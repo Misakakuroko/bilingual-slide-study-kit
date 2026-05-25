@@ -8,6 +8,13 @@ The format is inspired by Keep a Changelog, and this project uses semantic versi
 
 ## [Unreleased] / 未发布
 
+## [0.1.3] - 2026-05-25
+
+### Changed / 变更
+
+- Split the mixed-language README into separate English and Simplified Chinese pages with one-click language links.
+  将中英混排 README 拆分为独立英文页和简体中文页，并提供顶部一键语言切换链接。
+
 ## [0.1.2] - 2026-05-25
 
 ### Added / 新增

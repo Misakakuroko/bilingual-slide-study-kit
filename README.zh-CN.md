@@ -1,6 +1,6 @@
 # bilingual-slide-study-kit
 
-[English](README.md) | [中文](README.zh-CN.md)
+语言：[English](README.md) | **简体中文**
 
 [![CI](https://github.com/Misakakuroko/bilingual-slide-study-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/Misakakuroko/bilingual-slide-study-kit/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
@@ -140,12 +140,6 @@ Copy-Item -Recurse ".\skills\course-ppt-review-html" "$env:USERPROFILE\.codex\sk
 
 ```text
 使用 $course-ppt-review-html，把这份课程 PDF 生成一个面向考试复习的中英双语 HTML 页面，并详细讲解关键课件图片。
-```
-
-英文也可以这样说：
-
-```text
-Use $course-ppt-review-html to turn this lecture PDF into an exam-ready bilingual HTML review page with detailed slide explanations.
 ```
 
 ### 3. 准备课件素材
