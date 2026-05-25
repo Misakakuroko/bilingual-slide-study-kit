@@ -19,6 +19,7 @@ build/
 *_visual_snippets.html
 *-slide-*.jpg
 *-slide-*.png
+PixPin_*.png
 
 # Generated review pages from private materials.
 *_REVIEW*.html
