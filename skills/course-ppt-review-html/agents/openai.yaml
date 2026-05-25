@@ -1,0 +1,4 @@
+interface:
+  display_name: "Course PPT Review HTML"
+  short_description: "Turn course slides into exam-ready bilingual HTML"
+  default_prompt: "Use $course-ppt-review-html to turn this lecture PPT or PDF into an exam-ready bilingual HTML review page with detailed slide explanations."

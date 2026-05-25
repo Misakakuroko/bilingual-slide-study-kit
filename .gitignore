@@ -1,0 +1,25 @@
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+out/
+dist/
+build/
+
+# Avoid accidentally committing private or copyrighted course material.
+*.pdf
+*.ppt
+*.pptx
+*.key
+*_review_assets/
+*_slides_text.txt
+*_manifest.json
+*_visual_snippets.html
+*-slide-*.jpg
+*-slide-*.png
+
+# Generated review pages from private materials.
+*_REVIEW*.html
+*_STUDY*.html
