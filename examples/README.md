@@ -1,8 +1,16 @@
 # Examples
 
-This repository intentionally does not include real course PDFs or generated screenshots.
+This repository intentionally does not include real course PDFs or copyrighted slide screenshots.
 
-To create a public demo, use slides that you authored yourself or materials released under a license that permits redistribution.
+`demo.html` is a self-authored mock review page that shows the intended output style without using private course material. `demo-preview.png` is a public-safe preview image used by the repository README and social sharing.
+
+Live demo:
+
+```text
+https://misakakuroko.github.io/bilingual-slide-study-kit/examples/demo.html
+```
+
+To create another public demo, use slides that you authored yourself or materials released under a license that permits redistribution.
 
 Suggested demo structure:
 

@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bilingual Slide Study Kit Demo</title>
+  <style>
+    :root {
+      --paper: #fbfaf4;
+      --ink: #142033;
+      --muted: #667085;
+      --line: #d9d6c8;
+      --teal: #087f83;
+      --teal-soft: #dff3f1;
+      --rust: #d9562f;
+      --rust-soft: #f9e6dd;
+      --green: #2f8a5b;
+      --green-soft: #e0f2e7;
+      --shadow: 0 18px 45px rgba(20, 32, 51, .12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(90deg, rgba(8, 127, 131, .08) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(217, 86, 47, .06) 1px, transparent 1px),
+        var(--paper);
+      background-size: 42px 42px;
+      color: var(--ink);
+      font-family: "Avenir Next", "Segoe UI", "PingFang SC", sans-serif;
+      line-height: 1.55;
+    }
+
+    main {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 34px 0 54px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+      gap: 28px;
+      align-items: stretch;
+      min-height: 360px;
+    }
+
+    .hero-copy {
+      padding: 28px 0 14px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 36px;
+      height: 3px;
+      background: var(--rust);
+      border-radius: 999px;
+    }
+
+    h1 {
+      margin: 16px 0 18px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(48px, 7vw, 86px);
+      line-height: .93;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 680px;
+      color: #344054;
+      font-size: 19px;
+    }
+
+    .hero-panel {
+      background: rgba(255, 255, 255, .72);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .mini-slide {
+      border: 1px solid #bfc6c4;
+      background: #fff;
+      min-height: 210px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .axis {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 48px;
+      height: 2px;
+      background: #a7b0aa;
+    }
+
+    .trace {
+      position: absolute;
+      left: 30px;
+      right: 30px;
+      bottom: 49px;
+      height: 120px;
+    }
+
+    .trace svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .slide-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--teal);
+    }
+
+    .slide-note {
+      margin-top: 8px;
+      width: 210px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .panel-caption {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .metric {
+      border-left: 4px solid var(--teal);
+      padding: 9px 10px;
+      background: var(--teal-soft);
+      font-size: 13px;
+    }
+
+    .metric b {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .section {
+      margin-top: 34px;
+      border-top: 2px solid var(--ink);
+      padding-top: 20px;
+    }
+
+    .section h2 {
+      margin: 0 0 16px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .term {
+      background: rgba(255, 255, 255, .76);
+      border: 1px solid var(--line);
+      padding: 18px;
+      min-height: 236px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .term h3 {
+      margin: 14px 0 4px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 32px;
+      line-height: 1;
+    }
+
+    .phonetic {
+      color: var(--teal);
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 14px;
+    }
+
+    .zh {
+      margin: 10px 0;
+      font-weight: 700;
+    }
+
+    .sentence {
+      border-left: 4px solid var(--rust);
+      background: var(--rust-soft);
+      padding: 12px;
+      color: #4a2a20;
+      font-size: 14px;
+    }
+
+    .translation {
+      margin-top: 8px;
+      color: #475467;
+      font-size: 14px;
+    }
+
+    .answer-band {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .answer {
+      background: #122032;
+      color: #f6f2e8;
+      padding: 22px;
+    }
+
+    .answer b {
+      color: #8de0dc;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: .08em;
+    }
+
+    .answer p {
+      margin: 10px 0 0;
+      font-size: 18px;
+    }
+
+    .answer .translation {
+      color: #d7dfdc;
+    }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--ink);
+      border: 1px solid var(--ink);
+    }
+
+    .step {
+      background: var(--paper);
+      padding: 18px;
+      min-height: 140px;
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--rust);
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 860px) {
+      main {
+        width: min(100vw - 20px, 680px);
+        padding-top: 20px;
+      }
+
+      .hero,
+      .answer-band,
+      .grid,
+      .workflow {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 48px;
+      }
+
+      .panel-caption {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">demo output</div>
+        <h1>Bilingual Slide Study Kit</h1>
+        <p class="lead">A lecture PDF becomes an exam-focused HTML page: slide images, bilingual terminology, source-grounded explanations, and short-answer sentences students can actually memorize.</p>
+      </div>
+
+      <aside class="hero-panel" aria-label="Example slide explanation">
+        <div class="mini-slide">
+          <div class="slide-title">Slide 12 · Action potential waveform</div>
+          <div class="slide-note">The key exam idea is not only the spike shape, but how threshold, depolarization, and refractory period explain neural signaling.</div>
+          <div class="trace">
+            <svg viewBox="0 0 520 130" role="img" aria-label="Action potential trace">
+              <path d="M0 105 C65 105 85 104 105 98 C130 90 145 50 158 12 C170 45 180 98 206 111 C245 130 285 108 520 105" fill="none" stroke="#d9562f" stroke-width="8" stroke-linecap="round"/>
+              <line x1="115" y1="72" x2="205" y2="72" stroke="#087f83" stroke-width="2" stroke-dasharray="5 6"/>
+              <text x="210" y="77" fill="#087f83" font-size="16">threshold</text>
+            </svg>
+          </div>
+          <div class="axis"></div>
+        </div>
+        <div class="panel-caption">
+          <div class="metric"><b>How to read</b>Follow voltage over time, then identify threshold crossing.</div>
+          <div class="metric"><b>Must remember</b>A spike is an all-or-none event, not a graded response.</div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section">
+      <h2>Terminology Cards</h2>
+      <div class="grid">
+        <article class="term">
+          <span class="tag">core term</span>
+          <h3>threshold</h3>
+          <div class="phonetic">/ˈθreʃ.həʊld/</div>
+          <div class="zh">阈值；触发动作电位所需的临界水平</div>
+          <div class="sentence">When membrane potential reaches threshold, voltage-gated sodium channels open rapidly and initiate an action potential.</div>
+          <div class="translation">当膜电位达到阈值时，电压门控钠通道会迅速打开并启动动作电位。</div>
+        </article>
+
+        <article class="term">
+          <span class="tag">method</span>
+          <h3>artifact</h3>
+          <div class="phonetic">/ˈɑː.tɪ.fækt/</div>
+          <div class="zh">伪迹；由测量系统或运动产生的非生理信号</div>
+          <div class="sentence">In electrophysiology, artifacts must be separated from biological signals before interpreting neural activity.</div>
+          <div class="translation">在电生理学中，必须先把伪迹与生物信号区分开，才能解释神经活动。</div>
+        </article>
+
+        <article class="term">
+          <span class="tag">exam phrase</span>
+          <h3>excitability</h3>
+          <div class="phonetic">/ɪkˌsaɪ.təˈbɪl.ə.ti/</div>
+          <div class="zh">兴奋性；细胞或网络对刺激产生反应的能力</div>
+          <div class="sentence">Changes in excitability can alter whether the same stimulation intensity produces a measurable response.</div>
+          <div class="translation">兴奋性的变化会影响同样强度的刺激是否能够产生可测量的反应。</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Exam-Ready Short Answers</h2>
+      <div class="answer-band">
+        <div class="answer">
+          <b>English answer</b>
+          <p>An action potential is a rapid, all-or-none change in membrane potential caused by coordinated opening and closing of voltage-gated ion channels.</p>
+          <div class="translation">动作电位是膜电位快速的、全或无式的变化，由电压门控离子通道协调开启和关闭所导致。</div>
+        </div>
+        <div class="answer">
+          <b>English answer</b>
+          <p>Signal preprocessing is necessary because raw recordings often contain noise, artifacts, and baseline drift that can distort interpretation.</p>
+          <div class="translation">信号预处理是必要的，因为原始记录通常包含噪声、伪迹和基线漂移，这些都会扭曲解释。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Reusable Workflow</h2>
+      <div class="workflow">
+        <div class="step"><strong>1. Extract</strong>Render selected slide screenshots and text from a lecture PDF.</div>
+        <div class="step"><strong>2. Explain</strong>Use the Codex skill to create bilingual, exam-oriented explanations.</div>
+        <div class="step"><strong>3. Memorize</strong>Review terminology cards and English short-answer sentences.</div>
+        <div class="step"><strong>4. Verify</strong>Check mobile readability, image paths, and source labels before studying.</div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

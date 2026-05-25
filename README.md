@@ -1,87 +1,125 @@
 # bilingual-slide-study-kit
 
-Turn lecture slides into exam-ready bilingual HTML study guides.
+[![CI](https://github.com/Misakakuroko/bilingual-slide-study-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/Misakakuroko/bilingual-slide-study-kit/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](pyproject.toml)
 
-This project packages a reusable Codex skill and a deterministic slide-asset harness for students who need to review English lecture slides, especially when the exam requires technical vocabulary and short-answer responses.
+Turn lecture slides into bilingual, exam-ready HTML study kits.
 
-It is not a generic PPT-to-HTML converter. The goal is to generate review pages that explain the slides, extract important terms, create bilingual exam sentences, and add detailed visual explanations for hard-to-understand diagrams.
+`bilingual-slide-study-kit` is a reusable Codex skill plus a deterministic slide-asset harness. It is built for students who study technical courses in a second language and need more than a summary: terminology, source-grounded explanations, exam-style English answers, Chinese translations, and visual memory aids from the original slides.
+
+It is not a generic PPT-to-HTML converter. The goal is to turn a lecture PDF into a study page that helps a student understand the material, memorize the right terms, and write better exam answers.
+
+![Bilingual Slide Study Kit demo preview](examples/demo-preview.png)
+
+Live demo: [misakakuroko.github.io/bilingual-slide-study-kit/examples/demo.html](https://misakakuroko.github.io/bilingual-slide-study-kit/examples/demo.html)
+
+The demo is self-authored and public-safe. It does not use private course material.
+
+## Why This Exists
+
+Many students do not fail technical courses because they are incapable of understanding the science. They struggle because the lecture slides, technical vocabulary, and expected exam wording are all in a second language.
+
+This project packages a workflow for turning those slides into a bilingual study kit that can be reviewed on desktop or mobile.
 
 ## What It Creates
 
 For each lecture module, the workflow can produce a standalone HTML review page with:
 
-- slide-range logic map,
+- a slide-range logic map,
 - selected PPT/PDF screenshots,
-- detailed slide explanations,
+- detailed explanations of important diagrams,
 - important terminology with Chinese support,
-- English short-answer material with full Chinese sentence translations,
+- exam-ready English short-answer material,
+- full Chinese translations of English answer sentences,
 - method comparisons,
-- common confusions,
-- a memorization order for exam prep.
+- common confusions and misconceptions,
+- a memorization order for final exam or resit preparation.
 
-## Repository Layout
+## Supported Platforms
 
-```text
-bilingual-slide-study-kit/
-├── README.md
-├── LICENSE
-├── .gitignore
-├── scripts/
-│   └── prepare_ppt_review_assets.py
-├── skills/
-│   └── course-ppt-review-html/
-│       ├── SKILL.md
-│       ├── agents/openai.yaml
-│       ├── references/review-page-criteria.md
-│       └── scripts/prepare_ppt_review_assets.py
-├── templates/
-│   └── visual-card.html
-├── examples/
-│   └── README.md
-└── tests/
-    └── test_prepare_ppt_review_assets.py
-```
+The project is cross-platform. It is a Python harness plus a Codex skill, not a macOS-only app.
 
-## Requirements
+| Platform | Status | Notes |
+| --- | --- | --- |
+| macOS | Supported | Best tested. Uses `sips` for optional image resizing when available. |
+| Linux | Supported | Tested through CI for the Python harness. |
+| Windows | Supported | Requires Python and Poppler command-line tools in `PATH`. PowerShell examples are included below. |
 
-- Python 3.10+
-- Poppler command-line tools:
-  - `pdfinfo`
-  - `pdftotext`
-  - `pdftoppm`
+## Quick Start
 
-On macOS:
+### 1. Install Requirements
+
+You need Python 3.10+ and Poppler command-line tools:
+
+- `pdfinfo`
+- `pdftotext`
+- `pdftoppm`
+
+macOS:
 
 ```bash
 brew install poppler
 ```
 
-On Ubuntu/Debian:
+Ubuntu/Debian:
 
 ```bash
+sudo apt-get update
 sudo apt-get install poppler-utils
 ```
 
-`sips` is used for image resizing when available on macOS. The harness still works without it.
+Windows PowerShell:
 
-## Install The Codex Skill
+```powershell
+winget install Python.Python.3.12
+winget install oschwartz10612.Poppler
+```
 
-Clone this repository, then copy the skill into your Codex skills directory:
+After installing Poppler on Windows, open a new terminal and check:
+
+```powershell
+pdfinfo -v
+pdftotext -v
+pdftoppm -v
+```
+
+If those commands are not found, add Poppler's `Library\bin` or `bin` folder to your Windows `PATH`.
+
+### 2. Install The Codex Skill
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Misakakuroko/bilingual-slide-study-kit.git
+cd bilingual-slide-study-kit
+```
+
+macOS/Linux:
 
 ```bash
 mkdir -p ~/.codex/skills
 cp -R skills/course-ppt-review-html ~/.codex/skills/
 ```
 
-Then start a new Codex session and invoke:
+Windows PowerShell:
+
+```powershell
+New-Item -ItemType Directory -Force "$env:USERPROFILE\.codex\skills"
+Copy-Item -Recurse ".\skills\course-ppt-review-html" "$env:USERPROFILE\.codex\skills\"
+```
+
+Start a new Codex session and invoke:
 
 ```text
 Use $course-ppt-review-html to turn this lecture PDF into an exam-ready bilingual HTML review page with detailed slide explanations.
 ```
 
-## Use The Harness
+### 3. Prepare Slide Assets
 
-The harness prepares deterministic assets from a lecture PDF:
+The harness extracts slide text, selected slide screenshots, a manifest, and reusable HTML snippets.
+
+macOS/Linux:
 
 ```bash
 python3 scripts/prepare_ppt_review_assets.py \
@@ -92,6 +130,17 @@ python3 scripts/prepare_ppt_review_assets.py \
   --clean
 ```
 
+Windows PowerShell:
+
+```powershell
+py -3 .\scripts\prepare_ppt_review_assets.py `
+  --pdf "C:\path\to\lecture.pdf" `
+  --output-dir ".\out\module_assets" `
+  --prefix "module" `
+  --pages "3,4,7-10,13,16-18,20-21" `
+  --clean
+```
+
 Outputs:
 
 - `module_slides_text.txt`
@@ -99,7 +148,7 @@ Outputs:
 - `module-slide-03.jpg` etc.
 - `module_visual_snippets.html`
 
-The skill then uses these assets to write a review page. The harness does not replace the reasoning step; it makes the extraction and screenshot work reliable.
+The Codex skill then uses these deterministic assets to write the final review page. The harness does not replace reasoning; it makes text extraction and slide screenshots reliable.
 
 ## Example Prompt
 
@@ -123,6 +172,39 @@ Requirements:
 - Prioritize slide-grounded content and label slide sources.
 - Verify mobile readability and broken images.
 ```
+
+## Repository Layout
+
+```text
+bilingual-slide-study-kit/
+├── README.md
+├── LICENSE
+├── pyproject.toml
+├── scripts/
+│   └── prepare_ppt_review_assets.py
+├── skills/
+│   └── course-ppt-review-html/
+│       ├── SKILL.md
+│       ├── agents/openai.yaml
+│       ├── references/review-page-criteria.md
+│       └── scripts/prepare_ppt_review_assets.py
+├── templates/
+│   └── visual-card.html
+├── examples/
+│   ├── README.md
+│   ├── demo.html
+│   └── demo-preview.png
+└── tests/
+    └── test_prepare_ppt_review_assets.py
+```
+
+## Design Principles
+
+- Source grounded: label whether content comes from slides, generated reasoning, or user-provided material.
+- Exam oriented: every explanation should help with recall, comparison, or answer writing.
+- Bilingual by default: English exam sentences should include full Chinese translations.
+- Visual memory first: important diagrams should be explained, not merely embedded.
+- Privacy aware: course PDFs, copyrighted screenshots, and personal paths should stay out of the repository.
 
 ## Copyright And Privacy
 

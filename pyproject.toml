@@ -9,10 +9,26 @@ keywords = ["codex", "slides", "education", "html", "exam-prep", "bilingual"]
 authors = [
   { name = "bilingual-slide-study-kit contributors" }
 ]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Education",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: MacOS",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Education",
+  "Topic :: Text Processing",
+]
 
 [project.urls]
 Homepage = "https://github.com/Misakakuroko/bilingual-slide-study-kit"
 Issues = "https://github.com/Misakakuroko/bilingual-slide-study-kit/issues"
+Demo = "https://misakakuroko.github.io/bilingual-slide-study-kit/examples/demo.html"
 
 [tool.bilingual-slide-study-kit]
 skill = "skills/course-ppt-review-html"
