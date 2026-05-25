@@ -26,6 +26,32 @@ Live demo / 在线示例：
 The demo is self-authored and public-safe. It does not use private course material.
 示例页面为自制内容，不包含任何私人课程材料。
 
+## Case Gallery / 案例图
+
+The images below show the intended review-page experience in order. The second visual-explanation screenshot is a public-safe replacement that uses self-authored mock diagrams instead of real PPT pages.
+
+下面的图片按复习页面的使用顺序展示。第 2 张“图像精讲”截图使用公开安全的自制示意图替代真实 PPT 页面。
+
+### 1. Module Overview / 模块总览
+
+![Module overview](examples/case-01-overview.png)
+
+### 2. Visual Explanation / 图像精讲
+
+![Visual explanation cards](examples/case-02-visual-explanation.png)
+
+### 3. Terminology Cards / 术语卡片
+
+![Terminology cards](examples/case-03-terminology.png)
+
+### 4. Exam-Ready Short Answers / 英文短答素材
+
+![Exam-ready short answers](examples/case-04-short-answers.png)
+
+### 5. Method Comparison / 方法对比
+
+![Method comparison cards](examples/case-05-comparison.png)
+
 ## Why This Exists / 为什么做它
 
 Many students do not fail technical courses because they are incapable of understanding the science. They struggle because the lecture slides, technical vocabulary, and expected exam wording are all in a second language.
@@ -252,6 +278,11 @@ bilingual-slide-study-kit/
 │   └── visual-card.html
 ├── examples/
 │   ├── README.md
+│   ├── case-01-overview.png
+│   ├── case-02-visual-explanation.png
+│   ├── case-03-terminology.png
+│   ├── case-04-short-answers.png
+│   ├── case-05-comparison.png
 │   ├── demo.html
 │   └── demo-preview.png
 └── tests/

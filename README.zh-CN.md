@@ -19,6 +19,30 @@
 
 示例页面为自制内容，不包含任何私人课程材料。
 
+## 案例图
+
+下面的图片按复习页面的使用顺序展示。第 2 张“图像精讲”截图使用公开安全的自制示意图替代真实 PPT 页面。
+
+### 1. 模块总览
+
+![模块总览](examples/case-01-overview.png)
+
+### 2. 图像精讲
+
+![图像精讲卡片](examples/case-02-visual-explanation.png)
+
+### 3. 术语卡片
+
+![术语卡片](examples/case-03-terminology.png)
+
+### 4. 英文短答素材
+
+![英文短答素材](examples/case-04-short-answers.png)
+
+### 5. 方法对比
+
+![方法对比卡片](examples/case-05-comparison.png)
+
 ## 为什么做它
 
 很多学生并不是因为学不会专业知识才挂科，而是因为课件、专业术语和考试表达都在第二语言里，理解成本被放大了。
@@ -202,6 +226,11 @@ bilingual-slide-study-kit/
 │   └── visual-card.html
 ├── examples/
 │   ├── README.md
+│   ├── case-01-overview.png
+│   ├── case-02-visual-explanation.png
+│   ├── case-03-terminology.png
+│   ├── case-04-short-answers.png
+│   ├── case-05-comparison.png
 │   ├── demo.html
 │   └── demo-preview.png
 └── tests/

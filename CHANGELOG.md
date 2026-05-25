@@ -8,6 +8,15 @@ The format is inspired by Keep a Changelog, and this project uses semantic versi
 
 ## [Unreleased] / 未发布
 
+## [0.1.2] - 2026-05-25
+
+### Added / 新增
+
+- Added an ordered README case gallery using repository-safe screenshots.
+  新增按顺序展示的 README 案例图库。
+- Replaced the real PPT screenshot case with a public-safe self-authored visual-explanation image.
+  使用公开安全的自制图像精讲页替代真实 PPT 截图。
+
 ## [0.1.1] - 2026-05-25
 
 ### Changed / 变更

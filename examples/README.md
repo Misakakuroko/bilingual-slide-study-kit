@@ -8,6 +8,18 @@ This repository intentionally does not include real course PDFs or copyrighted s
 
 `demo.html` 是一个自制模拟复习页，用来展示目标输出风格，不使用私人课程材料。`demo-preview.png` 是一个公开安全的预览图，用于仓库 README 和社交媒体分享。
 
+## Case Gallery / 案例图
+
+The README gallery uses these files in order:
+
+README 中的案例图按以下顺序展示：
+
+1. `case-01-overview.png` — module overview / 模块总览
+2. `case-02-visual-explanation.png` — public-safe replacement for the real PPT screenshot / 替代真实 PPT 截图的公开安全图像精讲页
+3. `case-03-terminology.png` — terminology cards / 术语卡片
+4. `case-04-short-answers.png` — exam-ready short answers / 英文短答素材
+5. `case-05-comparison.png` — method comparison cards / 方法对比卡片
+
 Live demo / 在线示例：
 
 ```text
