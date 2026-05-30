@@ -1,6 +1,6 @@
 [project]
 name = "bilingual-slide-study-kit"
-version = "0.1.4"
+version = "0.1.5"
 description = "Codex skill and harness for turning lecture slides into bilingual exam-ready HTML study guides."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -33,3 +33,4 @@ Demo = "https://misakakuroko.github.io/bilingual-slide-study-kit/examples/demo.h
 [tool.bilingual-slide-study-kit]
 skill = "skills/course-ppt-review-html"
 harness = "scripts/prepare_ppt_review_assets.py"
+review_harness = "scripts/build_review_page.py"

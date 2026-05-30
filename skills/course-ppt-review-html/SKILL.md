@@ -37,14 +37,16 @@ Produce a study page that helps the learner answer exam questions, not a slide d
    按学习价值选择截图页：图示、表格、流程、机制、公式、对比图和高密度总结页优先。
 5. Use `scripts/prepare_ppt_review_assets.py` to create slide screenshots, extracted text, a manifest, and starter HTML figure snippets.
    使用 `scripts/prepare_ppt_review_assets.py` 生成课件截图、提取文本、manifest 和初始 HTML 图片片段。
-6. Build or update an HTML page with:
+6. For stable final quality, do not freehand the final HTML. Fill a structured review spec and render it with `scripts/build_review_page.py`.
+   为了避免质量漂移，最终 HTML 不要自由手写。先填写结构化 review spec，再用 `scripts/build_review_page.py` 固定渲染。
+7. Build or update an HTML page with:
    - module logic map / 模块逻辑图；
    - detailed slide-image explanations / 课件图片详细讲解；
    - important terms and concepts / 重点术语和概念；
    - exam-ready English short answers with Chinese sentence translations / 可背诵英文短答和完整中文句子翻译；
    - comparison tables or misconception checks / 对比表或误区检查；
    - a practical memorization order / 可执行的记忆顺序。
-7. Verify locally in a browser when possible, including mobile width, image loading, console errors, and horizontal overflow.
+8. Verify locally in a browser when possible, including mobile width, image loading, console errors, and horizontal overflow.
    尽可能在本地浏览器验证，包括移动端宽度、图片加载、控制台错误和横向溢出。
 
 ## Harness / 素材提取工具
@@ -71,6 +73,35 @@ The script writes / 脚本会输出：
 Read `references/review-page-criteria.md` when judging coverage, source discipline, bilingual explanations, or mobile/offline delivery.
 
 判断覆盖度、来源纪律、双语解释和移动端/离线交付质量时，请阅读 `references/review-page-criteria.md`。
+
+## Review Page Factory / 固定质量渲染与审查
+
+Use `build_review_page.py` when the user wants final review HTML quality to match or exceed previous high-quality pages.
+
+当用户希望最终复习 HTML 和之前高质量页面齐平或更好时，必须使用 `build_review_page.py`：
+
+```bash
+python3 scripts/build_review_page.py init-spec \
+  --manifest "/path/to/module_assets/module_manifest.json" \
+  --image-base "module_assets" \
+  --course-title "Course Name" \
+  --module-title "Module Name" \
+  --output "/path/to/module.review-spec.json"
+```
+
+Then fill the JSON spec. Do not leave empty visual explanations, terms, short answers, confusions, or review-order sections.
+
+然后补全 JSON spec。不要留下空的图像解释、术语、短答、易混点或复习顺序。
+
+```bash
+python3 scripts/build_review_page.py validate-spec --spec "/path/to/module.review-spec.json"
+python3 scripts/build_review_page.py render --spec "/path/to/module.review-spec.json" --output "/path/to/module.html"
+python3 scripts/build_review_page.py audit --html "/path/to/module.html"
+```
+
+The audit intentionally fails weak summary pages. A page with no navigation, no `.term-card`, no `.answer-card`, no `.explain-item`, or no `.exam-line` is not acceptable as a final study page.
+
+audit 会故意拦截低配摘要页。没有导航、没有 `.term-card`、没有 `.answer-card`、没有 `.explain-item` 或没有 `.exam-line` 的页面不能作为最终复习页交付。
 
 ## Source Discipline / 来源纪律
 

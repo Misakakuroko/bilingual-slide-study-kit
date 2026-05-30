@@ -183,7 +183,28 @@ Outputs:
 - `module-slide-03.jpg` etc.
 - `module_visual_snippets.html`
 
-The Codex skill then uses these deterministic assets to write the final review page. The harness does not replace reasoning; it makes text extraction and slide screenshots reliable.
+### 4. Render and Audit a Fixed-Quality Page
+
+To prevent the final page from drifting into a plain summary, use the spec -> render -> audit workflow. Codex fills the knowledge content in JSON; the harness owns the stable page structure and quality gate.
+
+```bash
+python3 scripts/build_review_page.py init-spec \
+  --manifest "./out/module_assets/module_manifest.json" \
+  --image-base "module_assets" \
+  --course-title "Course Name" \
+  --module-title "Module Name" \
+  --output "./out/module.review-spec.json"
+```
+
+After completing `module.review-spec.json`:
+
+```bash
+python3 scripts/build_review_page.py validate-spec --spec "./out/module.review-spec.json"
+python3 scripts/build_review_page.py render --spec "./out/module.review-spec.json" --output "./out/module.html"
+python3 scripts/build_review_page.py audit --html "./out/module.html"
+```
+
+The audit checks navigation, detailed visual explanations, term cards, English answer cards, Chinese translations, source labels, and broken images. A page with no `.term-card`, `.answer-card`, `.explain-item`, or `.exam-line` fails.
 
 ## Example Prompt
 
@@ -217,13 +238,16 @@ bilingual-slide-study-kit/
 ├── LICENSE
 ├── pyproject.toml
 ├── scripts/
-│   └── prepare_ppt_review_assets.py
+│   ├── prepare_ppt_review_assets.py
+│   └── build_review_page.py
 ├── skills/
 │   └── course-ppt-review-html/
 │       ├── SKILL.md
 │       ├── agents/openai.yaml
 │       ├── references/review-page-criteria.md
-│       └── scripts/prepare_ppt_review_assets.py
+│       └── scripts/
+│           ├── prepare_ppt_review_assets.py
+│           └── build_review_page.py
 ├── templates/
 │   └── visual-card.html
 ├── examples/
@@ -236,7 +260,8 @@ bilingual-slide-study-kit/
 │   ├── demo.html
 │   └── demo-preview.png
 └── tests/
-    └── test_prepare_ppt_review_assets.py
+    ├── test_prepare_ppt_review_assets.py
+    └── test_build_review_page.py
 ```
 
 ## Design Principles

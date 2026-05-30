@@ -183,7 +183,28 @@ py -3 .\scripts\prepare_ppt_review_assets.py `
 - `module-slide-03.jpg` 等；
 - `module_visual_snippets.html`
 
-Codex skill 会基于这些稳定生成的素材写出最终复习页面。harness 不替代推理和讲解，它负责把文字提取和课件截图这部分做稳定。
+### 4. 固定质量渲染与审查
+
+为了避免复习页退化成普通摘要页，最终页面建议走 spec -> render -> audit 流程。Codex 负责填充 JSON 里的知识内容，harness 负责固定页面结构并拦截低质量输出。
+
+```bash
+python3 scripts/build_review_page.py init-spec \
+  --manifest "./out/module_assets/module_manifest.json" \
+  --image-base "module_assets" \
+  --course-title "Course Name" \
+  --module-title "Module Name" \
+  --output "./out/module.review-spec.json"
+```
+
+补全 `module.review-spec.json` 后：
+
+```bash
+python3 scripts/build_review_page.py validate-spec --spec "./out/module.review-spec.json"
+python3 scripts/build_review_page.py render --spec "./out/module.review-spec.json" --output "./out/module.html"
+python3 scripts/build_review_page.py audit --html "./out/module.html"
+```
+
+`audit` 会检查导航、图像精讲、术语卡、英文短答卡、中文翻译、来源标注和坏图。没有 `.term-card`、`.answer-card`、`.explain-item` 或 `.exam-line` 的页面会被判定为不合格。
 
 ## 示例提示词
 
@@ -217,13 +238,16 @@ bilingual-slide-study-kit/
 ├── LICENSE
 ├── pyproject.toml
 ├── scripts/
-│   └── prepare_ppt_review_assets.py
+│   ├── prepare_ppt_review_assets.py
+│   └── build_review_page.py
 ├── skills/
 │   └── course-ppt-review-html/
 │       ├── SKILL.md
 │       ├── agents/openai.yaml
 │       ├── references/review-page-criteria.md
-│       └── scripts/prepare_ppt_review_assets.py
+│       └── scripts/
+│           ├── prepare_ppt_review_assets.py
+│           └── build_review_page.py
 ├── templates/
 │   └── visual-card.html
 ├── examples/
@@ -236,7 +260,8 @@ bilingual-slide-study-kit/
 │   ├── demo.html
 │   └── demo-preview.png
 └── tests/
-    └── test_prepare_ppt_review_assets.py
+    ├── test_prepare_ppt_review_assets.py
+    └── test_build_review_page.py
 ```
 
 ## 设计原则

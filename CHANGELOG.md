@@ -8,6 +8,17 @@ The format is inspired by Keep a Changelog, and this project uses semantic versi
 
 ## [Unreleased] / 未发布
 
+## [0.1.5] - 2026-05-30
+
+### Added / 新增
+
+- Added `build_review_page.py`, a fixed-quality review-page factory with `init-spec`, `validate-spec`, `render`, `metrics`, and `audit` commands.
+  新增 `build_review_page.py` 固定质量复习页工厂，支持 `init-spec`、`validate-spec`、`render`、`metrics` 和 `audit` 命令。
+- Added quality gates that reject summary-like pages without navigation, term cards, answer cards, detailed visual explanations, or exam sentences.
+  新增质量门，拦截缺少导航、术语卡、短答卡、图像精讲或考试句的普通摘要页。
+- Added tests for the review-page harness.
+  新增 review-page harness 测试。
+
 ## [0.1.4] - 2026-05-30
 
 ### Changed / 变更
