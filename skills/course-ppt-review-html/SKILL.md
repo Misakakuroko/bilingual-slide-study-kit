@@ -1,9 +1,25 @@
 ---
 name: course-ppt-review-html
-description: Create exam-oriented bilingual HTML study pages from lecture PPT/PDF slides, including concept maps, source-grounded terminology, English short-answer material, Chinese translations, and slide screenshots. Use when Codex is asked to explain course slides, turn a PPT/PDF into a reusable review page, prepare resit/exam study materials, add lecture images to HTML, or build repeatable harnesses for slide-based revision. 中文：把课程 PPT/PDF 转成面向考试复习的中英双语 HTML 页面，包含知识图谱、基于来源的术语、英文短答、中文翻译和课件截图讲解。
+description: Create exam-oriented bilingual HTML study pages from lecture PPT/PDF slides, including concept maps, source-grounded terminology, English short-answer material, Chinese translations, and slide screenshots. Use when Codex is asked to explain course slides, turn a PPT/PDF into a reusable review page, prepare resit/exam study materials, add lecture images to HTML, or build repeatable harnesses for slide-based revision. 中文：把课程 PPT/PDF 转成面向考试复习的中英双语 HTML 页面；当用户说“帮我生成XX课程的复习html”“给XX课程做复习HTML”“把这份PPT做成考试复习HTML”“生成XX模块复习页”等短句时也应使用本 skill。
 ---
 
 # Course PPT Review HTML / 课程课件复习 HTML
+
+## Quick Invocation / 短句调用
+
+You do not need to type the full skill name. Natural-language requests should trigger this skill, especially:
+
+你不需要每次输入完整的 `$course-ppt-review-html`。下面这些短句都应该触发本 skill：
+
+- `帮我生成 Signal Processing 课程的复习 HTML`
+- `给这门课做一个复习 html`
+- `把这个 PPT 做成考试复习 HTML`
+- `帮我生成 Recording 模块复习页`
+- `用这个课件生成中英双语复习网页`
+
+When the request is short, infer the likely course folder, PPT/PDF source, module scope, learner language level, and output path from the current context. Ask a question only if the source file or course folder cannot be identified safely.
+
+当用户只给短句时，优先从当前上下文推断课程目录、PPT/PDF 来源、模块范围、学习者语言水平和输出位置。只有在无法安全识别源文件或课程目录时，才向用户追问。
 
 ## Core Workflow / 核心流程
 

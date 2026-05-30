@@ -1,4 +1,4 @@
 interface:
   display_name: "Course PPT Review HTML / 课程课件复习 HTML"
   short_description: "Turn course slides into exam-ready bilingual HTML / 将课件转成中英双语考试复习 HTML"
-  default_prompt: "Use $course-ppt-review-html to turn this lecture PPT or PDF into an exam-ready bilingual HTML review page with detailed slide explanations. / 使用 $course-ppt-review-html，把这份课程 PPT 或 PDF 转成面向考试复习的中英双语 HTML 页面，并详细讲解关键课件图片。"
+  default_prompt: "Generate a review HTML page for this course PPT/PDF. / 帮我生成这门课程的复习 HTML；也可以写：使用 $course-ppt-review-html，把这份课程 PPT 或 PDF 转成面向考试复习的中英双语 HTML 页面。"

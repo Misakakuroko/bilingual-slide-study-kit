@@ -142,6 +142,14 @@ Start a new Codex session and invoke:
 Use $course-ppt-review-html to turn this lecture PDF into an exam-ready bilingual HTML review page with detailed slide explanations.
 ```
 
+You can also use a short natural-language request:
+
+```text
+Generate a review HTML page for the Signal Processing course.
+Turn this PPT into an exam-ready review HTML page.
+Create a bilingual study page for this module.
+```
+
 ### 3. Prepare Slide Assets
 
 The harness extracts slide text, selected slide screenshots, a manifest, and reusable HTML snippets.

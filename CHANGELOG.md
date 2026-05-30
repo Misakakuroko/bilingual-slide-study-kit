@@ -8,6 +8,15 @@ The format is inspired by Keep a Changelog, and this project uses semantic versi
 
 ## [Unreleased] / 未发布
 
+## [0.1.4] - 2026-05-30
+
+### Changed / 变更
+
+- Added short natural-language invocation examples to the skill metadata, skill body, and README pages.
+  在 skill 元数据、skill 正文和 README 页面中加入短句自然语言调用示例。
+- Updated the skill interface prompt so short review-HTML requests are shown as the default usage path.
+  更新 skill 界面提示，让简短的复习 HTML 请求成为默认使用方式。
+
 ## [0.1.3] - 2026-05-25
 
 ### Changed / 变更

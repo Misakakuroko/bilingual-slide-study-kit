@@ -142,6 +142,14 @@ Copy-Item -Recurse ".\skills\course-ppt-review-html" "$env:USERPROFILE\.codex\sk
 使用 $course-ppt-review-html，把这份课程 PDF 生成一个面向考试复习的中英双语 HTML 页面，并详细讲解关键课件图片。
 ```
 
+日常使用时也可以直接说短句，不必背完整 skill 名：
+
+```text
+帮我生成 Signal Processing 课程的复习 HTML。
+给这门课做一个复习 html。
+把这个 PPT 做成考试复习 HTML。
+```
+
 ### 3. 准备课件素材
 
 harness 会提取课件文字、指定页截图、manifest 文件，以及可复用的 HTML 图像片段。
