@@ -1,6 +1,6 @@
 [project]
 name = "bilingual-slide-study-kit"
-version = "0.1.5"
+version = "0.1.6"
 description = "Codex skill and harness for turning lecture slides into bilingual exam-ready HTML study guides."
 readme = "README.md"
 requires-python = ">=3.10"

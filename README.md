@@ -206,6 +206,8 @@ python3 scripts/build_review_page.py audit --html "./out/module.html"
 
 The audit checks navigation, detailed visual explanations, term cards, English answer cards, Chinese translations, source labels, and broken images. A page with no `.term-card`, `.answer-card`, `.explain-item`, or `.exam-line` fails.
 
+For Chinese learners with weak English, the audit also checks Chinese support: at least 1,200 Chinese characters, at least 20 Chinese-support blocks, and a Chinese-character ratio of at least 12% of visible text by default. Visual explanations, logic maps, misconceptions, and review-order cards should include Chinese guidance, not only short-answer translations.
+
 ## Example Prompt
 
 ```text

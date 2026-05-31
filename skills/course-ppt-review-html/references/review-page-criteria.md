@@ -39,6 +39,34 @@ Recommended structure:
 8. Memorization sequence for two or three review passes.
    适合两到三轮复习的记忆顺序。
 
+## Chinese Learning Scaffold / 中文学习脚手架
+
+For the default learner, Chinese is part of the learning design, not a secondary afterthought. The page should help a Chinese native speaker with weak English understand the concept before memorizing the English answer.
+
+对于默认学习者，中文是学习设计的一部分，不是事后的附属翻译。页面应先帮助英语较弱的中文母语者理解概念，再背英文答案。
+
+Required Chinese support:
+
+必需中文支持：
+
+- logic map cards must include Chinese explanation of the reasoning chain / 逻辑图卡片必须用中文解释推理链；
+- every visual explanation must include Chinese for what the slide teaches, how to read it, what to remember, the exam sentence, and the misconception / 每张图像精讲都要包含“这页讲什么、怎么看、必须记、考试句、误区”的中文；
+- term cards must include Chinese meaning and Chinese explanation, not only a word-level gloss / 术语卡必须包含中文含义和中文解释，不能只有词义；
+- every English answer sentence must have a full Chinese sentence translation / 每个英文答题句必须有完整中文句子翻译；
+- confusion cards and review-order cards must include Chinese guidance / 易混点和复习顺序必须有中文指导。
+
+Quality floor:
+
+质量底线：
+
+- `chinese_chars >= 1200`
+- `chinese_ratio >= 0.12`
+- `zh_blocks >= 20`
+
+Do not lower these gates for learners who explicitly say their English is weak.
+
+如果学习者明确说自己英语弱，不要降低这些门槛。
+
 ## Image Selection / 图片选择
 
 Select images that explain something hard to memorize:

@@ -25,12 +25,25 @@ def sample_spec(image_name: str = "slide-01.jpg"):
         "module_title": "Demo Module",
         "module_subtitle": "Fixed quality review page",
         "learner_profile": "Chinese learner preparing an English oral exam.",
+        "learner_profile_zh": "中文学习者准备英文口试，需要中文先帮助理解。",
         "source_summary": [
-            {"label": "Primary source", "text": "demo.pdf, slides 1-3.", "source": "Course source: slides 1-3."}
+            {
+                "label": "Primary source",
+                "text": "demo.pdf, slides 1-3.",
+                "text_zh": "demo.pdf，第 1 到 3 页。",
+                "source": "Course source: slides 1-3.",
+            }
         ],
         "module_nav": [{"label": "Demo Module", "href": "demo.html", "sub": "current", "current": True}],
         "logic_map": [
-            {"label": "Slides 1-3", "title": "Main chain", "text": "Start from symptoms, then choose a test.", "source": "Course source: slides 1-3."}
+            {
+                "label": "Slides 1-3",
+                "title": "Main chain",
+                "title_zh": "主线",
+                "text": "Start from symptoms, then choose a test.",
+                "text_zh": "先从症状定义综合征，再选择能验证假设的检查。",
+                "source": "Course source: slides 1-3.",
+            }
         ],
         "visuals": [
             {
@@ -39,10 +52,15 @@ def sample_spec(image_name: str = "slide-01.jpg"):
                 "alt": "Demo slide",
                 "title": "Reasoning diagram",
                 "what": "This slide teaches the diagnostic reasoning chain.",
+                "what_zh": "这页在讲临床推理链条。",
                 "how": "Read the arrows from presentation to syndrome and test choice.",
+                "how_zh": "按箭头从表现读到综合征，再读到检查选择。",
                 "remember": "Define the syndrome before selecting complementary exams.",
+                "remember_zh": "先定义综合征，再选择辅助检查。",
                 "exam_sentence": "A targeted exam should test the clinical hypothesis.",
+                "exam_sentence_zh": "有针对性的检查应该直接检验临床假设。",
                 "dont_confuse": "Do not order tests before defining the syndrome.",
+                "dont_confuse_zh": "不要在没有定义综合征之前就乱开检查。",
                 "source": "Course source: slide 1.",
             }
         ],
@@ -85,11 +103,20 @@ def sample_spec(image_name: str = "slide-01.jpg"):
             {
                 "title": "Test choice",
                 "wrong": "Start with every available test.",
+                "wrong_zh": "误区是先把所有检查都做一遍。",
                 "right": "Start with the syndrome and choose targeted tests.",
+                "right_zh": "正确做法是先定义综合征，再选择有针对性的检查。",
                 "source": "Course source: slide 2.",
             }
         ],
-        "review_order": [{"title": "First pass", "items": ["Read the logic map.", "Drill the short answer."]}],
+        "review_order": [
+            {
+                "title": "First pass",
+                "title_zh": "第一轮",
+                "items": ["Read the logic map.", "Drill the short answer."],
+                "items_zh": ["先读逻辑图。", "再背短答。"],
+            }
+        ],
     }
 
 
@@ -106,6 +133,7 @@ class BuildReviewPageTests(unittest.TestCase):
             self.assertEqual(metrics.answer_cards, 1)
             self.assertEqual(metrics.explain_items, 3)
             self.assertEqual(metrics.exam_lines, 1)
+            self.assertGreaterEqual(metrics.chinese_ratio, 0.12)
             self.assertFalse(metrics.broken_images)
             args = Namespace(
                 min_nav_links=1,
@@ -119,6 +147,7 @@ class BuildReviewPageTests(unittest.TestCase):
                 min_source_labels=4,
                 require_chinese=True,
                 min_chinese_chars=10,
+                min_chinese_ratio=0.12,
             )
             self.assertEqual(module.audit_metrics(metrics, args), [])
 
@@ -140,6 +169,7 @@ class BuildReviewPageTests(unittest.TestCase):
                 min_source_labels=1,
                 require_chinese=True,
                 min_chinese_chars=10,
+                min_chinese_ratio=0.12,
             )
             failures = module.audit_metrics(metrics, args)
             self.assertTrue(any("term_cards" in failure for failure in failures))

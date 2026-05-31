@@ -206,6 +206,8 @@ python3 scripts/build_review_page.py audit --html "./out/module.html"
 
 `audit` 会检查导航、图像精讲、术语卡、英文短答卡、中文翻译、来源标注和坏图。没有 `.term-card`、`.answer-card`、`.explain-item` 或 `.exam-line` 的页面会被判定为不合格。
 
+为了照顾英语较弱的中文学习者，`audit` 还会检查中文支持：默认至少 1,200 个中文字符、至少 20 个中文辅助块，并且中文字符占可见文本比例至少 12%。图像精讲、逻辑图、易混点和复习顺序都应该有中文解释，而不只是短答下面有中文翻译。
+
 ## 示例提示词
 
 ```text

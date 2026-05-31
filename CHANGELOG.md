@@ -8,6 +8,17 @@ The format is inspired by Keep a Changelog, and this project uses semantic versi
 
 ## [Unreleased] / 未发布
 
+## [0.1.6] - 2026-05-31
+
+### Changed / 变更
+
+- Strengthened the review-page harness for Chinese learners with weak English by requiring Chinese counterparts for logic cards, visual explanations, misconceptions, and review-order cards.
+  强化面向英语较弱中文学习者的 review-page harness，要求逻辑卡、图像精讲、易混点和复习顺序都有中文配套内容。
+- Added Chinese-support audit metrics: `chinese_ratio`, `min_chinese_ratio`, higher `min_chinese_chars`, and higher `min_zh_blocks`.
+  新增中文支持审查指标：`chinese_ratio`、`min_chinese_ratio`，并提高 `min_chinese_chars` 和 `min_zh_blocks` 门槛。
+- Updated skill and review criteria to treat Chinese as a comprehension scaffold, not a decorative translation layer.
+  更新 skill 和评审标准，将中文定义为理解脚手架，而不是装饰性翻译层。
+
 ## [0.1.5] - 2026-05-30
 
 ### Added / 新增
